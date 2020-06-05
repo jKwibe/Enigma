@@ -19,4 +19,8 @@ class ShiftTest < Minitest::Test
   def test_square_date
     assert_equal 1_672_401_025, @shift.square_date("040895")
   end
+
+  def test_offset
+    assert_equal [1, 0, 2, 5], @shift.offset("040895")
+  end
 end
