@@ -5,4 +5,8 @@ class Shift
       key_arr.join.to_i
     end
   end
+
+  def square_date(date)
+    (date.to_i)**2
+  end
 end
