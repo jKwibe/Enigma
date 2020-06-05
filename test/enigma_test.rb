@@ -12,7 +12,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_generate_time_string
-
+    Date.today.stubs(:strftime).returns("040620")
+    assert_equal "040620", @enigma.date
   end
 end
-# Time.now.strftime("%d%m%y")
