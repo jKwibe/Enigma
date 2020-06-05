@@ -9,4 +9,11 @@ class Shift
   def square_date(date)
     (date.to_i)**2
   end
+
+  def offset(date)
+    last_4_chars = square_date(date).to_s.split("").last(4)
+    last_4_chars.map do |character|
+      character.to_i
+    end
+  end
 end
