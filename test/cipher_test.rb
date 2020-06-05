@@ -20,21 +20,6 @@ class CipherTest < Minitest::Test
     assert_equal [3, 27, 73, 20], @cipher.shift_values("02715", "040895")
   end
 
-  def test_cipher_has_encrpt_and_decrypt_messages
-    encrypted = {
-                  encryption: "keder ohulw",
-                  key: "02715",
-                  date: "040895"
-                }
-    decrypted = {
-              decryption: "hello world",
-              key: "02715",
-              date: "040895"
-            }
-    assert_equal encrypted, @cipher.encrypted_message("keder ohulw", "02715", "040895")
-    assert_equal decrypted, @cipher.decrypted_message("hello world", "02715", "040895")
-  end
-
   def test_cipher_can_group_encription_shifted_values
     expected = { "a"=>"d","b"=>"e","c"=>"f","d"=>"g","e"=>"h","f"=>"i",
       "g"=>"j","h"=>"k","i"=>"l","j"=>"m","k"=>"n","l"=>"o",
