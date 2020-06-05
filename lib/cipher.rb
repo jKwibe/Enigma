@@ -20,4 +20,19 @@ class Cipher < Shift
       date: date
     }
   end
+
+  def encrypt_shift_matches(key, date, count = 0)
+    group_matches = characters.zip(characters.rotate(shift_values(key, date)[count]))
+    Hash[group_matches]
+  end
+
+  def encrypt(message, key, date)
+    encrypted_text = ""
+    count = 0
+    message.chars do |char|
+      encrypted_text << encrypt_shift_matches(key, date, count)[char]
+      count.eql?(3) ? count = 0 : count+= 1
+    end
+    encrypted_message(encrypted_text, key, date)
+  end
 end
