@@ -23,7 +23,11 @@ class Cipher < Shift
     encrypted_text = ""
     count = 0
     message.downcase.chars do |char|
-      encrypted_text << encrypt_shift_matches(key, date, count)[char]
+      if characters.include?(char)
+        encrypted_text << encrypt_shift_matches(key, date, count)[char]
+      else
+        encrypted_text << char
+      end
       count.eql?(3) ? count = 0 : count+= 1
     end
     encrypted_message(encrypted_text, key, date)
@@ -33,7 +37,11 @@ class Cipher < Shift
     encrypted_text = ""
     count = 0
     message.downcase.chars do |char|
-      encrypted_text << decrypt_shift_matches(key, date, count)[char]
+      if characters.include?(char)
+        encrypted_text << decrypt_shift_matches(key, date, count)[char]
+      else
+        encrypted_text << char
+      end
       count.eql?(3) ? count = 0 : count+= 1
     end
     decrypted_message(encrypted_text, key, date)
