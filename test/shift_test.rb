@@ -23,4 +23,8 @@ class ShiftTest < Minitest::Test
   def test_offset
     assert_equal [1, 0, 2, 5], @shift.offset("040895")
   end
+
+  def test_for_shift_values
+    assert_equal [3, 27, 73, 20], @shift.shift_values("02715", "040895")
+  end
 end
