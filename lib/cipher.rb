@@ -40,4 +40,14 @@ class Cipher < Shift
     end
     encrypted_message(encrypted_text, key, date)
   end
+
+  def decrypt(message, key, date)
+    encrypted_text = ""
+    count = 0
+    message.chars do |char|
+      encrypted_text << decrypt_shift_matches(key, date, count)[char]
+      count.eql?(3) ? count = 0 : count+= 1
+    end
+    decrypted_message(encrypted_text, key, date)
+  end
 end
