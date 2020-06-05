@@ -1,6 +1,6 @@
+require_relative "./shift"
 
-
-class Cipher
+class Cipher < Shift
   def characters
     ("a".."z").to_a << " "
   end
