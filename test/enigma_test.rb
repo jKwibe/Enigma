@@ -31,6 +31,8 @@ class EnigmaTest < Minitest::Test
                 }
 
     assert_equal expected, @enigma.encrypt("hello world")
+    assert_equal expected, @enigma.encrypt("HELLO WORLD")
+    assert_equal expected, @enigma.encrypt("HeLLo WOrLD")
   end
 
   def test_machine_can_decrypt

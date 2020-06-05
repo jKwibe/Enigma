@@ -11,6 +11,16 @@ class CipherTest < Minitest::Test
     assert_instance_of Cipher, @cipher
   end
 
+  def test_generate_time_string
+    Date.stubs(:today).returns(Date.new(2020, 06, 05))
+    assert_equal "050620", @cipher.date_gen
+  end
+
+  def test_generate_5_random_numbers
+    @cipher.stubs(:gen_keys).returns("23456")
+    assert_equal "23456", @cipher.gen_keys
+  end
+
   def test_cipher_has_all_characters
     expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
     assert_equal expected, @cipher.characters
@@ -40,16 +50,21 @@ class CipherTest < Minitest::Test
   end
 
   def test_can_encrypt
+    Date.stubs(:today).returns(Date.new(1995, 8, 04))
+    @cipher.stubs(:gen_keys).returns("02715")
 
      expected = {
                    encryption: "keder ohulw",
                    key: "02715",
                    date: "040895"
                  }
-     assert_equal expected,  @cipher.encrypt("hello world", "02715", "040895")
+     assert_equal expected,  @cipher.encrypt("hello world")
    end
 
    def test_can_decrypt
+     Date.stubs(:today).returns(Date.new(1995, 8, 04))
+     @cipher.stubs(:gen_keys).returns("02715")
+
       expected = {
                     decryption: "hello world",
                     key: "02715",
