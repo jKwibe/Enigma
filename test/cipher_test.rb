@@ -16,7 +16,22 @@ class CipherTest < Minitest::Test
     assert_equal expected, @cipher.characters
   end
 
-  def test_cipher_has_shited_values
+  def test_cipher_has_shifted_values
     assert_equal [3, 27, 73, 20], @cipher.shift_values("02715", "040895")
+  end
+
+  def test_cipher_has_encrpt_and_decrypt_messages
+    encrypted = {
+                  encryption: "keder ohulw",
+                  key: "02715",
+                  date: "040895"
+                }
+    decrypted = {
+              decryption: "hello world",
+              key: "02715",
+              date: "040895"
+            }
+    assert_equal encrypted, @cipher.encrypted_message("keder ohulw", "02715", "040895")
+    assert_equal decrypted, @cipher.decrypted_message("hello world", "02715", "040895")
   end
 end
