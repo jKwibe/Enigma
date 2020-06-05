@@ -26,6 +26,11 @@ class Cipher < Shift
     Hash[group_matches]
   end
 
+  def decrypt_shift_matches(key, date, count = 0)
+    group_matches = characters.zip(characters.rotate(-shift_values(key, date)[count]))
+    Hash[group_matches]
+  end
+
   def encrypt(message, key, date)
     encrypted_text = ""
     count = 0
