@@ -16,4 +16,11 @@ class Shift
       character.to_i
     end
   end
+
+  def shift_values(key, date)
+    values = keys(key).zip(offset(date))
+    values.map do |value|
+      value.sum
+    end
+  end
 end
