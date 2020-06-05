@@ -86,4 +86,16 @@ class CipherTest < Minitest::Test
                   }
       assert_equal expected, @cipher.decrypt("keder ohulw", "02715", "040895")
   end
+
+  def test_can_decrypt_with_unknown_character
+     Date.stubs(:today).returns(Date.new(1995, 8, 04))
+     @cipher.stubs(:gen_keys).returns("02715")
+
+      expected = {
+                    decryption: "hello world!",
+                    key: "02715",
+                    date: "040895"
+                  }
+      assert_equal expected, @cipher.decrypt("keder ohulw!", "02715", "040895")
+  end
 end
