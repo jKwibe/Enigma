@@ -35,13 +35,23 @@ class CipherTest < Minitest::Test
     assert_equal decrypted, @cipher.decrypted_message("hello world", "02715", "040895")
   end
 
-  def test_cipher_can_group_shifted_values
+  def test_cipher_can_group_encription_shifted_values
     expected = { "a"=>"d","b"=>"e","c"=>"f","d"=>"g","e"=>"h","f"=>"i",
       "g"=>"j","h"=>"k","i"=>"l","j"=>"m","k"=>"n","l"=>"o",
       "m"=>"p","n"=>"q","o"=>"r","p"=>"s","q"=>"t","r"=>"u",
       "s"=>"v","t"=>"w","u"=>"x","v"=>"y","w"=>"z","x"=>" ",
       "y"=>"a","z"=>"b"," "=>"c"}
     assert_equal expected, @cipher.encrypt_shift_matches("02715", "040895")
+  end
+
+  def test_cipher_can_group_decryption_shifted_values
+    expected = {
+      "a"=>"y", "b"=>"z", "c"=>" ", "d"=>"a", "e"=>"b", "f"=>"c",
+      "g"=>"d", "h"=>"e", "i"=>"f", "j"=>"g", "k"=>"h", "l"=>"i", "m"=>"j",
+      "n"=>"k", "o"=>"l", "p"=>"m", "q"=>"n", "r"=>"o", "s"=>"p", "t"=>"q",
+      "u"=>"r", "v"=>"s", "w"=>"t", "x"=>"u", "y"=>"v", "z"=>"w", " "=>"x"
+    }
+    assert_equal expected, @cipher.decrypt_shift_matches("02715", "040895")
   end
 
   def test_can_encrypt
