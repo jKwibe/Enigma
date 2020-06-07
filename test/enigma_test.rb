@@ -44,6 +44,6 @@ class EnigmaTest < Minitest::Test
                   :date=>"050620"
                 }
 
-    assert_equal expected, @enigma.decrypt("hpcnoknqrwv")
+    assert_equal expected, @enigma.decrypt("hpcnoknqrwv","23456","050620")
   end
 end
