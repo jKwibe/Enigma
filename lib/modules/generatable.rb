@@ -1,4 +1,4 @@
-
+require "date"
 module Generatable
   def date_gen
     Date.today.strftime("%d%m%y")
