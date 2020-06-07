@@ -27,8 +27,6 @@ class CommandLine
   end
 
   def write_decryption
-    require "pry"
-    binding.pry
     encrypted_message = @enigma.decrypt(read_file, key, date)
     File.write(delivered_path, encrypted_message[:decryption])
     puts "Created #{delivered_path.gsub("/lib/", "")} with key of #{encrypted_message[:key]} and date #{encrypted_message[:date]}"
