@@ -33,7 +33,7 @@ class Cipher < Shift
     encrypted_message(encrypted_text, key, date)
   end
 
-  def decrypt(message, key = gen_keys, date = date_gen)
+  def decrypt(message, key , date = date_gen)
     encrypted_text = ""
     count = 0
     message.downcase.chars do |char|
