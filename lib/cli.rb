@@ -23,12 +23,12 @@ class CommandLine
   def write_encryption
     message = @enigma.encrypt(read_file)
     File.write(delivered_path, message[:encryption])
-    puts "Created #{delivered_path.gsub("/lib/", "")} with key of #{message[:key]} and date #{message[:date]}"
+    puts "Created #{delivered_path} with key of #{message[:key]} and date #{message[:date]}"
   end
 
   def write_decryption
     encrypted_message = @enigma.decrypt(read_file, key, date)
     File.write(delivered_path, encrypted_message[:decryption])
-    puts "Created #{delivered_path.gsub("/lib/", "")} with key of #{encrypted_message[:key]} and date #{encrypted_message[:date]}"
+    puts "Created #{delivered_path} with key of #{encrypted_message[:key]} and date #{encrypted_message[:date]}"
   end
 end
